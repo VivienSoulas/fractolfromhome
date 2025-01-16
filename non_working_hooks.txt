@@ -1,0 +1,28 @@
+#include "fractol.h"
+
+void scrollhook(double xdelta, double ydelta, void* param)
+{
+	t_fractol	*fractol;
+	int32_t		mouse_x;
+	int32_t		mouse_y;
+
+	(void)xdelta;
+	fractol = param;
+	mlx_get_mouse_pos(fractol->mlx, &mouse_x, &mouse_y);
+	double mouse_real = (mouse_x - fractol->width / 2.0) * 4.0 / (fractol->width * fractol->zoom) + fractol->move_x;
+    double mouse_imag = (mouse_y - fractol->height / 2.0) * 4.0 / (fractol->height * fractol->zoom) + fractol->move_y;
+	if (ydelta > 0)
+	{
+		puts("Up!");
+		fractol->zoom *= 2;
+	}
+	else if (ydelta < 0)
+	{
+		puts("Down!");
+		fractol->zoom /= 2;
+	}
+	fractol->move_x = mouse_real - (mouse_x - fractol->width / 2.0) * 4.0 / (fractol->width * fractol->zoom);
+    fractol->move_y = mouse_imag - (mouse_y - fractol->height / 2.0) * 4.0 / (fractol->height * fractol->zoom);
+
+	render_mandelbrot(fractol->win, fractol, fractol->max_it);
+}
