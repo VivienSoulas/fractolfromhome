@@ -6,7 +6,7 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:09:17 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/17 12:21:18 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 14:39:56 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 // Display the image in the window
 int	set_window(t_fractol *fra)
 {
-	fra->zoom = 1.0;
 	fra->mlx = mlx_init(fra->width, fra->height, "Fractal", true);
 	if (!fra->mlx)
 	{

@@ -6,7 +6,7 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:47:22 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/17 12:20:48 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 13:58:19 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,11 @@ typedef struct s_fractol
 	double		move_y;
 	mlx_image_t	*win;
 	mlx_t		*mlx;
-}	t_fractol;
-
-typedef struct s_colours
-{
 	uint8_t		red;
 	uint8_t		green;
 	uint8_t		blue;
 	uint32_t	colrgba;
-}	t_colours;
+}	t_fractol;
 
 typedef struct s_numbers
 {
@@ -66,6 +62,6 @@ int			calc(int max_it, double real, double imag);
 void		acquisition(mlx_image_t *win, t_fractol *fractol);
 void		scrollhook(double xdelta, double ydelta, void *param);
 void		keyhook(mlx_key_data_t keydata, void *param);
-void		initial_state(t_fractol *fractol);
+void		initial_state(t_fractol *fra);
 
 #endif

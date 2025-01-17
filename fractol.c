@@ -6,20 +6,8 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:32:25 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/17 12:15:41 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 14:37:25 by vsoulas          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
-/*   fractol.c										  :+:	  :+:	:+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: vsoulas <vsoulas@student.42.fr>			+#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2024/12/06 14:53:18 by vsoulas		   #+#	#+#			 */
-/*   Updated: 2024/12/13 13:20:22 by vsoulas		  ###   ########.fr	   */
-/*																			*/
 /* ************************************************************************** */
 
 #include "fractol.h"
@@ -39,6 +27,7 @@ int	main(int argc, char **argv)
 		printf("Please indicate <m> for Mandelbrot or <j> for Julia\n");
 		return (-1);
 	}
+	initial_state(&fractol);
 	fractol.max_it = ft_atoi(argv[1]);
 	fractol.width = ft_atoi(argv[2]);
 	fractol.height = ft_atoi(argv[3]);
