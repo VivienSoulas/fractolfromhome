@@ -6,7 +6,7 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:33:52 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/17 14:54:16 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 15:35:17 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	render_mandelbrot(mlx_image_t *img, t_fractol *fra, int max_it)
 			num.b = img->width * fra->zoom;
 			num.real = (num.x - img->width / 2.0) * 4.0 / num.b;
 			num.imag = (num.y - img->height / 2.0) * 4.0 / num.b;
-			num.it = calc(max_it, num.real, num.imag);
+			num.it = calc_mandelbrot(max_it, num.real, num.imag);
 			if (num.it == max_it)
 				fra->colrgba = set_colours(0, 0, 0);
 			else
@@ -55,7 +55,7 @@ uint32_t	set_colours(int a, int b, int c)
 	return (color.colrgba);
 }
 
-int	calc(int max_it, double real, double imag)
+int	calc_mandelbrot(int max_it, double real, double imag)
 {
 	double			tmp;
 	t_numbers		num;

@@ -20,6 +20,7 @@ zoom that follows the pointer
 code Julia
 code extra fractal
 clean up hook function
+have image resize when window is rezised
 
 
  / ! \ not to self / ! \
@@ -29,3 +30,4 @@ green = 0
 blue = 0
 will initialise a black window but the colours will be true and will change with the first colours change
 (key b will be blue, g green and t red)
+colours aren't true with current version because of the division by num.it (but it is needed for the fractal/gradiant effect)

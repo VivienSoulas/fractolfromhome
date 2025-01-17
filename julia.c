@@ -6,38 +6,59 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:00:39 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/17 11:24:24 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 16:23:51 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+// z = z2 + c where c is a constant given for the set
 
 void	render_julia(mlx_image_t *img, t_fractol *fra, int max_it)
 {
 	t_numbers	num;
-	uint32_t	colour;
 
 	num.y = 0;
 	while (num.y < (int)img->height)
 	{
 		num.x = 0;
-		num.a = 0;
 		while (num.x < (int)img->width)
 		{
 			num.b = img->width * fra->zoom;
 			num.real = (num.x - img->width / 2.0) * 4.0 / num.b;
 			num.imag = (num.y - img->height / 2.0) * 4.0 / num.b;
-			num.it = calc(max_it, num.real, num.imag);
-			num.a = (255 * num.it) / max_it;
+			num.it = calc_julia(max_it, num.real, num.imag);
 			if (num.it == max_it)
-				colour = set_colours(0, 0, 255);
+				fra->colrgba = set_colours(0, 0, 0);
 			else
-				colour = set_colours(num.a, num.a, 255);
-			set_pixel(img, num.x, num.y, colour);
+				fra->colrgba = set_colours(fra->red * num.it, fra->green * num.it, fra->blue * num.it);
+			set_pixel(img, num.x, num.y, fra->colrgba);
 			num.x++;
 		}
 		num.y++;
 	}
+}
+
+int	calc_julia(int max_it, double real, double imag)
+{
+	double			tmp;
+	t_numbers		num;
+	double			cr;
+	double			ci;
+
+	cr = 0.79;
+	ci = 0.55;
+	num.zr = real;
+	num.zi = imag;
+	num.it = 0.0;
+	tmp = 0.0;
+	while (num.zr * num.zr + num.zi * num.zi <= 4.0 && num.it < max_it)
+	{
+		tmp = num.zr * num.zr - num.zi * num.zi + cr;
+		num.zi = 2 * num.zr * num.zi + ci;
+		num.zr = tmp;
+		num.it++;
+	}
+	return (num.it);
 }
 
 //uint32_t	set_colours(int a, int b, int c)

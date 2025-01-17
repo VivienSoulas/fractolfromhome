@@ -6,7 +6,7 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:47:22 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/17 13:58:19 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 15:35:49 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ uint32_t	combine_colours(uint8_t red, uint8_t green, uint8_t blue);
 int			ft_atoi(char *str);
 int			ft_strcmp(char *str1, char *str2);
 uint32_t	set_colours(int a, int b, int c);
-int			calc(int max_it, double real, double imag);
+int			calc_mandelbrot(int max_it, double real, double imag);
+int			calc_julia(int max_it, double real, double imag);
 void		acquisition(mlx_image_t *win, t_fractol *fractol);
 void		scrollhook(double xdelta, double ydelta, void *param);
 void		keyhook(mlx_key_data_t keydata, void *param);
