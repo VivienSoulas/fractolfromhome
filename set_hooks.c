@@ -6,7 +6,7 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:43:20 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/17 12:22:19 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:44:13 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 	{
 		fractol->max_it -= 5;
+		if (fractol->max_it <= 1)
+			fractol->max_it = 2;
 		acquisition(fractol->win, fractol);
 	}
 	if (keydata.key == MLX_KEY_R && keydata.action == MLX_PRESS)
