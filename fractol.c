@@ -6,7 +6,7 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:32:25 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/16 11:47:00 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:15:41 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 int	main(int argc, char **argv)
 {
 	t_fractol	fractol;
-	t_engine	engine;
 
 	if (argc != 5)
 	{
@@ -43,6 +42,8 @@ int	main(int argc, char **argv)
 	fractol.max_it = ft_atoi(argv[1]);
 	fractol.width = ft_atoi(argv[2]);
 	fractol.height = ft_atoi(argv[3]);
-	set_window(&fractol, argv[4], &engine);
+	fractol.init_max = ft_atoi(argv[1]);
+	fractol.arg = argv[4];
+	set_window(&fractol);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: vsoulas <vsoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:33:52 by vsoulas           #+#    #+#             */
-/*   Updated: 2025/01/16 12:12:50 by vsoulas          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:20:20 by vsoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,31 @@
 // Mandelbrot pixels in the complex plane
 // Map it to color
 // Combine into an RGBA color
-void	render_mandelbrot(mlx_image_t *img, t_fractol *fractol, int max_it)
+// fra = fractol, max_it = max iteration
+// a = colour redention depending on iteration number
+// b = width of the image depending on the zoom
+void	render_mandelbrot(mlx_image_t *img, t_fractol *fra, int max_it)
 {
 	t_numbers	num;
-	uint32_t	colour;
-	int			a;
+	t_colours	colours;
 
-	colour = 0;
 	num.y = 0;
 	while (num.y < (int)img->height)
 	{
 		num.x = 0;
-		a = 0;
+		num.a = 0;
 		while (num.x < (int)img->width)
 		{
-			num.real = (num.x - img->width / 2.0) * 4.0 / (img->width * fractol->zoom);
-			num.imag = (num.y - img->height / 2.0) * 4.0 / (img->width * fractol->zoom);
+			num.b = img->width * fra->zoom;
+			num.real = (num.x - img->width / 2.0) * 4.0 / num.b;
+			num.imag = (num.y - img->height / 2.0) * 4.0 / num.b;
 			num.it = calc(max_it, num.real, num.imag);
-			a = (255 * num.it) / max_it;
+			num.a = (255 * num.it) / max_it;
 			if (num.it == max_it)
-				colour = set_colours(255, 0, 0);
+				colours.colrgba = set_colours(255, 0, 0);
 			else
-				colour = set_colours(a, a, 0);
-			set_pixel(img, num.x, num.y, colour);
+				colours.colrgba = set_colours(num.a, num.a, 0);
+			set_pixel(img, num.x, num.y, colours.colrgba);
 			num.x++;
 		}
 		num.y++;
